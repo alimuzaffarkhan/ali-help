@@ -1,0 +1,11 @@
+{
+    "data": [
+        {
+            "top": {
+                "inner": {
+                    "nested": "value"
+                }
+            }
+        }
+    ]
+}
