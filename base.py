@@ -14,6 +14,10 @@ class BaseParser(object):
                 value = value[path]
             except KeyError:
                 pass
+            except TypeError:
+                method = getattr(self, path, None)
+                if method:
+                    value = method(value)
         return value
 
     def parse_row(self, raw_row):
@@ -32,8 +36,17 @@ class BaseParser(object):
 class FileOneParser(BaseParser):
 
     FIELDS = {
-        'ali': 'top.inner.nested'
+        'ali': 'top.inner.nested',
+        'highest_paid': 'daily_rates.get_highest'
     }
+
+    def get_highest(self, values):
+        max_rate = 0
+        entry = None
+        for value in values:
+            if value['rate'] > max_rate:
+                entry = value
+        return entry.get('name', None)
 
 
 parser = FileOneParser('file1.json')

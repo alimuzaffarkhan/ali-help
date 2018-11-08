@@ -5,7 +5,12 @@
                 "inner": {
                     "nested": "value"
                 }
-            }
+            },
+            "daily_rates": [
+                {"name": "jay", "rate": 1},
+                {"name": "ali", "rate": 1000},
+                {"name": "nam", "rate": 2000}
+            ]
         }
     ]
 }
